@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+   <title>DataTable tag Example</title>
+</h:head>
+<h:body>
+   <h3>Mobile Details</h3>
+
+   <h:selectOneMenu value="#{bookrecords.actualAuthor}">
+      <f:selectItems value="#{bookrecords.authorList}"></f:selectItems>
+      <f:ajax listener="#{bookrecords.changeActualList}" render="tabelka"></f:ajax>
+   </h:selectOneMenu>
+   <h:selectOneMenu value="#{bookrecords.actualType}">
+      <f:selectItems value="#{bookrecords.typeList}"></f:selectItems>
+      <f:ajax listener="#{bookrecords.changeActualList}" render="tabelka"></f:ajax>
+   </h:selectOneMenu>
+   <h:selectOneMenu value="#{bookrecords.actualCurrency}">
+      <f:selectItems value="#{bookrecords.currencyList}"></f:selectItems>
+      <f:ajax listener="#{bookrecords.changeActualList}" render="tabelka"></f:ajax>
+   </h:selectOneMenu>
+
+
+
+   <h:form>
+
+
+      <h:dataTable value="#{bookrecords.getActualList()}" var="b" border="2"
+                   cellspacing="1" cellpadding="1" id="tabelka">
+         <h:column>
+            <c:facet name="header">Tytuł</c:facet>
+            #{b.title}
+         </h:column>
+         <h:column>
+            <c:facet name="header">autor</c:facet>
+            #{b.author}
+         </h:column>
+         <h:column>
+            <c:facet name="header">gatunek</c:facet>
+            #{b.type}
+         </h:column>
+         <h:column>
+            <c:facet name="header">cena</c:facet>
+            #{b.price}
+         </h:column>
+         <h:column>
+            <c:facet name="header">waluta</c:facet>
+            #{b.currency}
+         </h:column>
+
+         <h:column>
+            <c:facet name="header">liczba stron</c:facet>
+            #{b.numberOfPages}
+         </h:column>
+
+      </h:dataTable>
+   </h:form>
+
+</h:body>
+</html>
